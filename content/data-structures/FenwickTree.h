@@ -16,6 +16,10 @@ struct FT {
 	void update(int pos, ll dif) { // a[pos] += dif
 		for (; pos < sz(s); pos |= pos + 1) s[pos] += dif;
 	}
+  void upd(int l, int r, ll dif) {
+    upd(l, dif);
+    upd(r + 1, -dif);
+  }
 	ll query(int pos) { // sum of values in [0, pos)
 		ll res = 0;
 		for (; pos > 0; pos &= pos - 1) res += s[pos-1];

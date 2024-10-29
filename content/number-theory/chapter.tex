@@ -17,14 +17,26 @@
 \section{Divisibility}
 	\kactlimport{euclid.h}
 	% \kactlimport{Euclid.java}
+  \subsection{Chinese Remainder Theorem}
+  Let $m = m_1 \cdot m_2 \cdots m_k$, where $m_i$ are pairwise coprime. In addition to $m_i$, we are also given a system of congruences
+
+$$\left\{\begin{array}{rcl}
+    a & \equiv & a_1 \pmod{m_1} \\
+    a & \equiv & a_2 \pmod{m_2} \\
+      & \vdots & \\
+    a & \equiv & a_k \pmod{m_k}
+\end{array}\right.$$
+
+where $a_i$ are some given constants. CRT will give the unique solution modulo $m$.
 	\kactlimport{CRT.h}
+  \kactlimport{CRT2.h}
 
 	\subsection{Bézout's identity}
 	For $a \neq $, $b \neq 0$, then $d=gcd(a,b)$ is the smallest positive integer for which there are integer solutions to
 	$$ax+by=d$$
 	If $(x,y)$ is one solution, then all solutions are given by
 	$$\left(x+\frac{kb}{\gcd(a,b)}, y-\frac{ka}{\gcd(a,b)}\right), \quad k\in\mathbb{Z}$$
-
+  \kactlimport{Diophantine.h}
 	\kactlimport{phiFunction.h}
 
 \section{Fractions}
