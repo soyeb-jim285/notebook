@@ -1,24 +1,32 @@
 struct AC {
-  int N = 0, P = 0, A = 10;
-  vector<vector<int>> next{{A, 0}}, out{{}}, out_link{0}, link{0};
-
+  int N, P;
+  const int A = 26;
+  vector <vector <int>> next;
+  vector <int> link, out_link;
+  vector <vector <int>> out;
+  AC(): N(0), P(0) {node();}
   int node() {
-    next.emplace_back(A, 0), link.push_back(0), out_link.push_back(0), out.push_back({});
+    next.emplace_back(A, 0);
+    link.emplace_back(0);
+    out_link.emplace_back(0);
+    out.emplace_back(0);
     return N++;
   }
-  int add_pattern(const string &T) {
+  inline int get (char c) {
+    return c - 'a';
+  }
+  int add_pattern (const string T) {
     int u = 0;
-    for (char c : T) {
-      if (!next[u][c - '0']) next[u][c - '0'] = node();
-      u = next[u][c - '0'];
+    for (auto c : T) {
+      if (!next[u][get(c)]) next[u][get(c)] = node();
+      u = next[u][get(c)];
     }
     out[u].push_back(P);
     return P++;
   }
   void compute() {
-    queue<int> q;
-    q.push(0);
-    while (!q.empty()) {
+    queue <int> q;
+    for (q.push(0); !q.empty();) {
       int u = q.front(); q.pop();
       for (int c = 0; c < A; ++c) {
         int v = next[u][c];
@@ -31,13 +39,18 @@ struct AC {
       }
     }
   }
-  int advance(int u, char c) {
-    while (u && !next[u][c - '0']) u = link[u];
-    return next[u][c - '0'];
+  int advance (int u, char c) {
+    while (u && !next[u][get(c)]) u = link[u];
+    u = next[u][get(c)];
+    return u;
   }
-  bool match(char c, int u) {
-    u = advance(u, c);
-    for (int v = u; v; v = out_link[v]) if (!out[v].empty()) return true;
-    return false;
+  void match (const string S) {
+    int u = 0;
+    for (auto c : S) {
+      u = advance(u, c);
+      for (int v = u; v; v = out_link[v]) {
+        for (auto p : out[v]) cout << "match " << p << endl;
+      }
+    }
   }
 };
