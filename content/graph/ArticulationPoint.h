@@ -15,9 +15,7 @@ void dfs(int u, int p) {
       } else {
         child++;
         dfs(v, u);
-        if (tin[u] <= low[v]) {
-          is_ap = 1;
-        }
+        if (tin[u] <= low[v]) is_ap = 1;
         low[u] = min(low[u], low[v]);
       }
     }

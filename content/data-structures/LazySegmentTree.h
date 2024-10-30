@@ -2,7 +2,7 @@
  * Author: Farhan
  * Description: Segment tree with lazy propagation
  * Time: O(\log N)
-* Usage: update(1, 0, n - 1, ql, qr, val), query(1, 0, n - 1, ql, qr)
+ * Usage: update(1, 0, n - 1, ql, qr, val), query(1, 0, n - 1, ql, qr)
  * Status: stress-tested
  */
 void push(int ind, int l, int r) {

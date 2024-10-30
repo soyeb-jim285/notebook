@@ -1,3 +1,7 @@
+/**
+* Author: Farhan
+* Description: Aho Corasick
+*/
 struct AC {
   int N, P;
   const int A = 26;

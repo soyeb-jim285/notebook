@@ -1,3 +1,7 @@
+/** 
+ * Author: Farhan
+* Description: Matrix Exponentiation
+*/
 using row = vector<int>;
 using matrix = vector<row>;
 matrix unit_mat(int n) {

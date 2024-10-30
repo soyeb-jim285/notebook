@@ -1,3 +1,7 @@
+/**
+ * Author: Farhan
+* Description: Xor basis
+*/
 int basis[d] = {0};
 int sz = 0;
 void insertVector(int mask) {

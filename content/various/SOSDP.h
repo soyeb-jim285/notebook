@@ -1,3 +1,7 @@
+/**
+* Author: Farhan
+* Description: SOS DP
+*/
 vector<vector<int>> dp(1 << n, vector<int>(n));
 vector<int> sos(1 << n);
 for (int mask = 0; mask < (1 << n); mask++) {

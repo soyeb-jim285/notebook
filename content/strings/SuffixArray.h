@@ -1,3 +1,7 @@
+/** 
+ * Author: Farhan
+* Description: Suffix Array
+*/
 void count_sort(vector<pli> &b, int bits) {
 	int mask = (1 << bits) - 1;
 	rep(it, 0, 2) {
@@ -10,7 +14,6 @@ void count_sort(vector<pli> &b, int bits) {
 		swap(b, res);
 	}
 }
-
 struct SuffixArray {
 	vi a; string s;
 	SuffixArray(const string &str) : s(str + '\0') {
@@ -19,7 +22,6 @@ struct SuffixArray {
 		vector<pli> b(N);
 		a.resize(N);
 		rep(i, 0, N) b[i] = {s[i], i};
-
 		for (int moc = 0;; moc++) {
 			count_sort(b, q);
 			rep(i, 0, N) a[b[i].second] = (i && b[i].first == b[i - 1].first) ? a[b[i - 1].second] : i;
