@@ -1,41 +1,46 @@
-/**
- * Author: 罗穗骞, chilli
- * Date: 2019-04-11
- * License: Unknown
- * Source: Suffix array - a powerful tool for dealing with strings
- * (Chinese IOI National team training paper, 2009)
- * Description: Builds suffix array for a string.
- * \texttt{sa[i]} is the starting index of the suffix which
- * is $i$'th in the sorted suffix array.
- * The returned vector is of size $n+1$, and \texttt{sa[0] = n}.
- * The \texttt{lcp} array contains longest common prefixes for
- * neighbouring strings in the suffix array:
- * \texttt{lcp[i] = lcp(sa[i], sa[i-1])}, \texttt{lcp[0] = 0}.
- * The input string must not contain any zero bytes.
- * Time: O(n \log n)
- * Status: stress-tested
- */
-#pragma once
+void count_sort(vector<pli> &b, int bits) {
+	int mask = (1 << bits) - 1;
+	rep(it, 0, 2) {
+		int shift = it * bits;
+		vi q(1 << bits), w(sz(q) + 1);
+		rep(i, 0, sz(b)) q[(b[i].first >> shift) & mask]++;
+		partial_sum(q.begin(), q.end(), w.begin() + 1);
+		vector<pli> res(sz(b));
+		rep(i, 0, sz(b)) res[w[(b[i].first >> shift) & mask]++] = b[i];
+		swap(b, res);
+	}
+}
 
 struct SuffixArray {
-	vi sa, lcp;
-	SuffixArray(string& s, int lim=256) { // or basic_string<int>
-		int n = sz(s) + 1, k = 0, a, b;
-		vi x(all(s)), y(n), ws(max(n, lim));
-		x.push_back(0), sa = lcp = y, iota(all(sa), 0);
-		for (int j = 0, p = 0; p < n; j = max(1, j * 2), lim = p) {
-			p = j, iota(all(y), n - j);
-			rep(i,0,n) if (sa[i] >= j) y[p++] = sa[i] - j;
-			fill(all(ws), 0);
-			rep(i,0,n) ws[x[i]]++;
-			rep(i,1,lim) ws[i] += ws[i - 1];
-			for (int i = n; i--;) sa[--ws[x[y[i]]]] = y[i];
-			swap(x, y), p = 1, x[sa[0]] = 0;
-			rep(i,1,n) a = sa[i - 1], b = sa[i], x[b] =
-				(y[a] == y[b] && y[a + j] == y[b + j]) ? p - 1 : p++;
+	vi a; string s;
+	SuffixArray(const string &str) : s(str + '\0') {
+		int N = sz(s), q = 8;
+		while ((1 << q) < N) q++;
+		vector<pli> b(N);
+		a.resize(N);
+		rep(i, 0, N) b[i] = {s[i], i};
+
+		for (int moc = 0;; moc++) {
+			count_sort(b, q);
+			rep(i, 0, N) a[b[i].second] = (i && b[i].first == b[i - 1].first) ? a[b[i - 1].second] : i;
+			if ((1 << moc) >= N) break;
+			rep(i, 0, N) {
+				b[i] = {(ll)a[i] << q, i + (1 << moc) < N ? a[i + (1 << moc)] : 0};
+				b[i].second = i;
+			}
 		}
-		for (int i = 0, j; i < n - 1; lcp[x[i++]] = k)
-			for (k && k--, j = sa[x[i] - 1];
-					s[i + k] == s[j + k]; k++);
+		rep(i, 0, N) a[i] = b[i].second;
+	}
+	vi lcp() {
+		int n = sz(a), h = 0;
+		vi inv(n), res(n);
+		rep(i, 0, n) inv[a[i]] = i;
+		rep(i, 0, n) if (inv[i]) {
+			int p0 = a[inv[i] - 1];
+			while (s[i + h] == s[p0 + h]) h++;
+			res[inv[i]] = h;
+			if (h) h--;
+		}
+		return res;
 	}
 };
