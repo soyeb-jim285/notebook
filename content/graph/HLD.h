@@ -1,6 +1,6 @@
-/*
+/**
  * Author: Farhan
- * Descritopn: Heavy Light Decomposition
+ * Description: Heavy Light Decomposition
  */
 int query(int a, int b) {
   int res = 0;

@@ -1,6 +1,6 @@
-/*
+/**
  * Author: Farhan
- * Descritopn: Centroid decompose
+ * Description: Centroid decompose
  */
 void calc_sz(int u, int p) {
   sz[u] = 1;

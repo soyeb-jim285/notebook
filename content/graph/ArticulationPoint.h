@@ -1,6 +1,6 @@
-/*
+/**
  * Author: Farhan
- * Descritopn: Finding articulation points in a graph.
+ * Description: Finding articulation points in a graph.
  */
 vector<int> adj[N];
 int t = 0;

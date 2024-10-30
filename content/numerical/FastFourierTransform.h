@@ -1,6 +1,6 @@
-/*
-* Author: Farhan
-* Descritopn: Fast Fourier Transform. Returns the coefficients of the product of two polynomials.
+/**
+ * Author: Farhan
+* Description: Returns coefficient of multiplication of two polynomials.
  */
 const double PI = acos(-1);
 struct base {

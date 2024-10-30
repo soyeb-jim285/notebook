@@ -1,6 +1,6 @@
-/*
+/**
  * Author: Farhan
- * Descritopn: Dsu on tree
+ * Description: Dsu on tree
  */
 void dfs(int u, int p) {
   node[tt] = u;

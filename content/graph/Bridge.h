@@ -1,6 +1,6 @@
-/*
+/**
  * Author: Farhan
- * Descritopn: Finds all the bridges in a graph.
+ * Description: Finds all the bridges in a graph.
  */
 void dfs(int v, int p = -1) {
   visited[v] = true;
