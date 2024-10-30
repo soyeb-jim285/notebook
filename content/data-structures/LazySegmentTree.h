@@ -1,8 +1,9 @@
 /**
  * Author: YouKnowWho
-* Description: Segment tree with lazy propagation.
-* Time: O(\log N) for upd/query, O(N \log N) for build.
- * Usage: Node* tr = new Node(v, 0, sz(v)); 
+ * Description: Segment tree with lazy propagation.
+ * Time: O(\log N) for upd/query, O(N \log N) for build.
+ * Usage: segment_tree<ll> st; st.build(1, 1, n); st.upd(1, 1, n, l, r, v);
+ * st.query(1, 1, n, l, r);
  */
 
 const int N = 1e5 + 9;
