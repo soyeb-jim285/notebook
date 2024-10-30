@@ -1,7 +1,11 @@
+/*
+ * Author: Farhan
+ * Descritopn: Dsu on tree
+ */
 void dfs(int u, int p) {
   node[tt] = u;
   tin[u] = tt++, sz[u] = 1, hc[u] = -1;
-  for (auto v: adj[u]) {
+  for (auto v : adj[u]) {
     if (v != p) {
       dfs(v, u);
       sz[u] += sz[v];
@@ -13,7 +17,7 @@ void dfs(int u, int p) {
   tout[u] = tt - 1;
 }
 void dsu(int u, int p, int keep) {
-  for (int v: adj[u]) {
+  for (int v : adj[u]) {
     if (v != p and v != hc[u]) {
       dsu(v, u, 0);
     }
@@ -21,7 +25,7 @@ void dsu(int u, int p, int keep) {
   if (hc[u] != -1) {
     dsu(hc[u], u, 1);
   }
-  for (auto v: adj[u]) {
+  for (auto v : adj[u]) {
     if (v != p and v != hc[u]) {
       for (int i = tin[v]; i <= tout[v]; ++i) {
         int w = node[i];
@@ -31,7 +35,6 @@ void dsu(int u, int p, int keep) {
         int w = node[i];
         // Add contribution of node w
       }
-
     }
   }
   // Add contribution of node u
@@ -44,4 +47,5 @@ void dsu(int u, int p, int keep) {
     // Data structure in initial state (empty contribution)
   }
 }
-dfs(0, 0);  dsu(0, 0, 0);
+dfs(0, 0);
+dsu(0, 0, 0);

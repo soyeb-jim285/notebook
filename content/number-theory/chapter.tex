@@ -55,7 +55,15 @@ where $a_i$ are some given constants. CRT will give the unique solution modulo $
 
 	Primitive roots exist modulo any prime power $p^a$, except for $p = 2, a > 2$, and there are $\phi(\phi(p^a))$ many.
 	For $p = 2, a > 2$, the group $\mathbb Z_{2^a}^\times$ is instead isomorphic to $\mathbb Z_2 \times \mathbb Z_{2^{a-2}}$.
-
+\section{Fibonacci}
+Fibonacci numbers are defined by $F_0 = 0, F_1 = 1, F_n = F_{n-1} + F_{n-2}$. Again, $F_n = \frac{\phi^n - \hat{\phi}^n}{\sqrt{5}} \approx \frac{\phi^n}{\sqrt{5}} $, where $\phi = \frac{1 + \sqrt{5}}{2}$ and $\hat{\phi} = \frac{1 - \sqrt{5}}{2}$.
+Some important properties of Fibonacci numbers:
+\begin{align*}
+  F_{n-1}F_{n+1} - F_n^2 = (-1)^n &&& F_{n+k} = F_{k-1}F_{n} + F_kF_{n+1} \\
+  F_{2n} = F_n(F_{n-1} + F_{n+1}) &&& F_{2n+1} = F_n^2 + F_{n+1}^2 \\
+  n | m \Leftrightarrow F_n | F_m &&& \gcd(F_m, F_n) = F_{\gcd(m,n)} \\
+\end{align*}
+\kactlimport{Fibonacci.h}
 \section{Estimates}
 	$\sum_{d|n} d = O(n \log \log n)$.
 
