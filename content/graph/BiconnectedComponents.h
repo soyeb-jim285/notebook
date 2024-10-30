@@ -45,7 +45,6 @@ int dfs(int at, int par, F& f) {
 	}
 	return top;
 }
-
 template<class F>
 void bicomps(F f) {
 	num.assign(sz(ed), 0);

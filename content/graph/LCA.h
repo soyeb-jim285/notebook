@@ -26,7 +26,6 @@ struct LCA {
 			dfs(C, y, v);
 		}
 	}
-
 	int lca(int a, int b) {
 		if (a == b) return a;
 		tie(a, b) = minmax(time[a], time[b]);

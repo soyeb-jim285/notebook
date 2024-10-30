@@ -40,12 +40,10 @@ found:
 		rep(j,0,n) tmp[i][j] = tmp[i][j] * v % mod;
 		A[i][i] = 1;
 	}
-
 	for (int i = n-1; i > 0; --i) rep(j,0,i) {
 		ll v = A[j][i];
 		rep(k,0,n) tmp[j][k] = (tmp[j][k] - v*tmp[i][k]) % mod;
 	}
-
 	rep(i,0,n) rep(j,0,n)
 		A[col[i]][col[j]] = tmp[i][j] % mod + (tmp[i][j] < 0)*mod;
 	return n;
