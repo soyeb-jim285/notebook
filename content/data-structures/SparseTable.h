@@ -2,6 +2,7 @@
  * Author: Soyeb Pervez Jim
 * Description: returns the gcd of the range [L, R].
 * Time: O(nlogn) to build, O(1) query
+* Usage: SparseTable<int> st(n); st.build(arr), st.query(L, R);
  * Initial capacity must be a power of 2 (if provided).
  */
 template <typename T> struct SparseTable {
