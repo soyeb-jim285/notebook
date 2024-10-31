@@ -81,4 +81,22 @@ Some important properties of Fibonacci numbers:
 
   $ g(n) = \sum_{n|d} f(d) \Leftrightarrow f(n) = \sum_{n|d} \mu(d/n)g(d)$
 
+\subsection{GCD and LCM}
+if $m$ is any integer, then $\displaystyle \gcd(a + m {\cdot} b, b) = \gcd(a, b)$ \\
+The gcd is a multiplicative function in the following sense: if $\displaystyle a_1$ and $\displaystyle a_2$ are relatively prime, then $\displaystyle \gcd(a_1 \cdot a_2, b) = \gcd(a_1, b) \cdot \gcd(a_2,b )$. \\
+$\displaystyle \gcd(a, \operatorname{lcm}(b, c)) = \operatorname{lcm}(\gcd(a, b), \gcd(a, c))$. \\
+$\displaystyle \operatorname{lcm}(a, \gcd(b, c)) = \gcd(\operatorname{lcm}(a, b), \operatorname{lcm}(a, c))$. \\
+For non-negative integers $\displaystyle a$ and $b$, where $\displaystyle a$ and $b$ are not both zero, $\displaystyle \gcd({n^a} - 1, {n^b} - 1) = n^{\gcd(a,b)} - 1$ \\
+$\displaystyle \gcd(a, b) = \displaystyle \sum_{k|a \, \text{and} \, k|b} {\phi(k)}$ \\
+$\displaystyle \displaystyle \sum_{i=1}^n [\gcd(i, n) = k] = { \phi{\left(\frac{n}{k}\right)}}$ \\
+$\displaystyle \displaystyle \sum_{k=1}^n \gcd(k, n) = \displaystyle \sum_{d|n} d \cdot {\phi{\left(\frac{n}{d}\right)}}$ \\
+$\displaystyle \displaystyle \sum_{k=1}^n x^{\gcd(k,n)} = \displaystyle \sum_{d|n} x^d \cdot {\phi{\left(\frac{n}{d}\right)}}$ \\
+$\displaystyle \displaystyle \sum_{k=1}^n \frac{1}{\gcd(k, n)} = \displaystyle \sum_{d|n} \frac{1}{d} \cdot {\phi{\left(\frac{n}{d}\right)}} = \frac{1}{n} \displaystyle \sum_{d|n} d \cdot \phi(d)$ \\
+$\displaystyle \displaystyle \sum_{k=1}^n \frac{k}{\gcd(k, n)} = \frac{n}{2} \cdot \displaystyle \sum_{d|n} \frac{1}{d} \cdot {\phi{\left(\frac{n}{d}\right)}} = \frac{n}{2} \cdot \frac{1}{n} \cdot \displaystyle \sum_{d|n} d \cdot \phi(d)$ \\
+$\displaystyle \displaystyle \sum_{k=1}^n \frac{n}{\gcd(k, n)} = 2 * \displaystyle \sum_{k=1}^n \frac{k}{\gcd(k, n)} - 1$, for $n > 1$ \\
+$\displaystyle \displaystyle \sum_{i=1}^n \sum_{j=1}^n [\gcd(i, j) = 1] = \displaystyle \sum_{d=1}^n \mu(d) \lfloor {\frac{n}{d} \rfloor}^2$ \\
+$\displaystyle \displaystyle \sum_{i=1}^n \displaystyle\sum_{j=1}^n \gcd(i, j) = \displaystyle \sum_{d=1}^n \phi(d) \lfloor {\frac{n}{d} \rfloor}^2$ \\
+$\displaystyle \sum_{i=1}^n \sum_{j=1}^n i \cdot j[\gcd(i, j) = 1] = \sum_{i=1}^n \phi(i)i^2$ \\
+$\displaystyle F(n) = \displaystyle \sum_{i=1}^n \displaystyle \sum_{j=1}^n \operatorname{lcm}(i, j) = \displaystyle \sum_{l=1}^n {\left(\frac{\left( 1 + \lfloor{\frac{n}{l} \rfloor} \right) \left( \lfloor{\frac{n}{l} \rfloor} \right)} {2} \right)}^2 \displaystyle \sum_{d|l} \mu(d)ld$ \\ 
+
  $ g(n) = \sum_{1 \leq m \leq n} f(\left\lfloor\frac{n}{m}\right \rfloor ) \Leftrightarrow f(n) = \sum_{1\leq m\leq n} \mu(m)g(\left\lfloor\frac{n}{m}\right\rfloor)$
