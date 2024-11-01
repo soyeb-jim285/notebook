@@ -1,3 +1,8 @@
+/**
+ * Author: Farhan
+* Description: Virtual tree
+* Time: O(N \log N)
+*/
 void buildTree (vector <int> &nodes) {
   if (nodes.size() <= 1) return;
   sort(nodes.begin(), nodes.end(), [] (int x, int y) {return in[x] < in[y];});

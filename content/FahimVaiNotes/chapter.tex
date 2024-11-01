@@ -1,0 +1,166 @@
+\chapter{Fahir Vai's Notes}
+\section{Coloring}
+
+- The number of labeled undirected graphs with \( n \) vertices, \( G_n = 2^{\binom{n}{2}} \)
+
+- The number of labeled directed graphs with \( n \) vertices, \( G_n = 2^{n(n - 1)} \)
+
+- The number of connected labeled undirected graphs with \( n \) vertices, \( C_n = 2^{\binom{n}{2}} - \frac{1}{n} \sum_{k = 1}^{n - 1} k \binom{n}{k} 2^{\binom{n-k}{2}}C_k = 2^{\binom{n}{2}} - \sum_{k = 1}^{n - 1} \binom{n - 1}{k - 1} 2^{\binom{n-k}{2}}C_k \)
+
+- The number of k-connected labeled undirected graphs with \( n \) vertices, \( D[n][k] = \sum_{s = 1}^{n} \binom{n - 1}{s- 1}C_s D[n - s][k - 1] \)
+
+- Cayley's formula: the number of trees on \( n \) labeled vertices = the number of spanning trees of a complete graph with \( n \) labeled vertices = \( n^{n - 2} \)
+
+- Number of ways to color a graph using k color such that no two adjacent nodes have same color
+
+  -- Complete graph = \( k(k-1)(k-2)...(k-n+1) \)
+
+  -- Tree = \( k(k - 1)^{n - 1} \)
+
+  -- Cycle = \( (k - 1)^n + (-1)^n (k - 1) \)
+
+- Number of trees with $ n $ labeled nodes: $ n^{n - 2} $
+
+\section{Lucas Number}
+
+Number of edge cover of a cycle graph $ C_n $ is $ L_n $
+
+$ L(n) = L(n-1) + L(n-2); L(0)=2, L(1)=1 $
+
+\section{Catalan Number}
+
+\[ C_{n+1}= C_0C_n+C_1C_{n-1}+C_2C_{n-2}+... +C_nC_0 \]
+\[ C_n = \binom{2n}{n} - \binom{2n}{n+1} \]
+\[ C_n = \frac{1}{n + 1} \binom{2n}{n} \]
+
+\section{Derangement}
+\[ D_n = (n-1) (D_{n-1} + D_{n-2}) = nD_{n-1} + (-1)^n \]
+\[ D_0 = 1, D_1 = 0 \]  
+$ 1, 0, 1, 2, 9, 44, 265, ... $
+
+\section{Ballot Theorem}
+
+Suppose that in an election, candidate A receives
+a votes and candidate B receives b votes, where $a \geq kb$ for some positive
+integer k. Compute the number of ways the ballots can be ordered so that
+A maintains more than k times as many votes as B throughout the counting
+of the ballots.
+
+The solution to the ballot problem is $((a - kb)/(a+b)) * C(a+b, a)$
+
+\section{Classical Problem}
+$ F(n, k) = $ number of ways to color n objects using exactly $ k $ colors
+
+Let $ G(n, k) $ be the number of ways to color n objects using no more than $ k $ colors.
+
+Then, $ F(n, k) = G(n, k) - C(k, 1) * G(n, k-1) + C(k, 2) * G(n, k-2) - C(k, 3) * G(n, k-3) ... $
+
+Determining G(n, k) :
+
+Suppose, we are given a 1 * n grid. Any two adjacent cells can not have same color.
+Then, $G(n, k) = k * ((k-1)^(n-1))$
+
+If no such condition on adjacent cells.
+Then, $G(n, k) = k ^ n$
+
+
+\section{Generating Function}
+
+$ 1/(1 - x) = 1 + x + x^2 + x^3 + ... $
+$ 1/(1 - ax) = 1 + ax + (ax)^2 + (ax)^3 + ... $
+$ 1/(1 - x)^2 = 1 + 2x + 3x^2 + 4x^3 + ... $
+$ 1/(1 - x)^3 = C(2, 2) + C(3, 2)x + C(4, 2)x^2 + C(5, 2)x^3 + ... $
+$ 1/(1 - ax)^(k + 1) = 1 + C(1 + k, k)(ax) + C(2 + k, k)(ax)^2 + C(3 + k, k)(ax)^3 + ... $
+$ x(x + 1)(1 - x)^-3 = 1 + x + 4x^2 + 9x^3 + 16x^4 + 25x^5 + ... $
+$ e^x = 1 + x + (x^2)/2! + (x^3)/3! + (x^4)/4! + ... $
+
+\section{SUM}
+
+\( 1^4+2^4+3^4+...+n^4=\frac{n(n+1)(2n+1)(3n2+3n+-1)}{30} \) \\
+\( S_{(n, p)} = 1^p + 2^p + 3^p + 4^p + ... + n^ap \) \\
+\( S(n, p) = \frac{1}{p + 1} [(n + 1)^{p + 1} - 1 - \sum_{i = 0}^{p - 1} \binom{p + 1}{i} S(n, i)] \) \\
+\( 1.2 + 2.3 + 3.4 + ... = \frac{1}{3} n(n+1)(n+2) \) \\
+\( \sum_{i=1}^n f_k(i) = \frac{1}{k+1} n(n+1)(n+2)...(n+k) = \frac{1}{k+1}\frac{(n+k)!}{(n-1)!} \) \\
+\( \sum_{i=0}{n}ix^i = 1 + 2x^2 + 3x^3 + 4x^4 + 5x^5+ ... +nx^n = \frac{(x-(n+1)x^{n+1}+nx^{n+2})} {(x-1)^2} \) \\
+
+\section{Probability}
+
+\[ P(A|B) = \frac{P(A \cap B)}{P(B)} \]
+\[ P(A|B) = \frac{P(B|A)P(A)}{P(B)} \]
+
+\section{Matching Formula}
+
+\textbf{Normal Graph} \\
+MM + MEC = n (exculding vertex), IS + VC = G, MIS + MVC = G \\
+
+\textbf{Bipartite Graph} \\
+MIS = n - MBM, MVC = MBM, MEC = n - MBM \\
+
+\section{Number Theory}
+
+- HCN: 1e6(240), 1e9(1344), 1e12(6720), 1e14(17280), 1e15(26880), 1e16(41472) \\
+- \( gcd(a, b, c, d, ...) = gcd(a, b - a, c - b, d - c, ...) \) \\
+- \( gcd(a + k, b + k, c + k, d + k, ...) = gcd(a + k, b - a, c - b, d - c, ...) \) \\
+- Primitive root exists iff \( n = 1, 2, 4, p^k, 2\times p^k \), where \( p \) is an odd prime. \\
+- If primtive root exists, there are \( \phi(\phi(n)) \) primtive roots of \( n \). \\
+- The numbers from \( 1 \) to \( n \) have in total \( O(n\log\log n) \) unique prime factors. \\
+- \( x \equiv r_1 \mod m1 \) and \( x \equiv r_2 \mod m2 \) has a solution iff \( \gcd(m_1, m_2) | (r_1 - r_2) \) \\
+Solution of \( x^2 \equiv a (\mod p) \):\\
+- \( ca \equiv cb \pmod{m} \iff a \equiv b \pmod{ \frac{n}{\gcd(n, c)}} \) \\
+- \( ax \equiv b \pmod{m} \) has a solution \( \iff \) \( \gcd(a, m) | b \) \\
+- If \( ax \equiv b \pmod{m} \) has a solution, then it has \( gcd(a, m) \) solutions and they are separated by \( \frac{m}{\gcd(a, m)} \) \\
+- \( ax \equiv 1 \pmod{m} \) has a solution or \( a \) is invertible \( \pmod{m} \) \( \iff \) \(\gcd(a, m) = 1 \) \\
+- \( x^2 \equiv 1 \pmod{p} \) then \( x \equiv \pm 1 \pmod{p} \) \\
+- There are \( \frac{p - 1}{2} \) has no solution. \\
+- There are \( \frac{p - 1}{2} \) has exaclty two solutions. \\
+- When \( p \% 4 = 3 \), \( x \equiv \pm a^{\frac{p + 1}{4}} \) \\
+- When \( p \% 8 = 5 \), \( x \equiv a^{\frac{p + 3}{8}} \; or \; x \equiv 2^{\frac{p - 1}{4}} a^{\frac{p + 3}{8}} \)
+
+\section{Totient}
+
+- If \( p \) is a prime \( \phi(p^k) = p^k - p^{k-1} \) \\
+- If \( a \) \& \( b \) are relatively prime, \( \phi(ab) = \phi(a)\phi(b) \) \\
+- \( \phi(n) = n(1-\frac{1}{p_1})(1-\frac{1}{p_2})(1-\frac{1}{p_3})...(1-\frac{1}{p_k}) \) \\
+- Sum of coprime to \( n = n * \frac{\phi(n)}{2} \) \\
+- If \( n = 2^k, \phi(n) = 2^{k - 1} = \frac{n}{2} \) \\
+- For \( a \) \& \( b \), \( \phi(ab) = \phi(a)\phi(b)\frac{d}{\phi(d)} \) \\
+- \( \phi (ip) = p \phi(i) \) whenever \( p \) is a prime and it divides \( i \) \\
+- The number of \( a (1<= a <=N) \) such that \( gcd(a, N)=d \) is \( \phi(\frac{n}{d}) \) \\
+- If \( n > 2 \) , \( \phi(n) \) is always even \\
+- Sum of gcd, \( \sum_{i=1}^n gcd(i, n) = \sum_{d|n} d \phi(\frac{n}{d}) \) \\
+- Sum of lcm, \( \sum_{i=1}{n}lcm(i, n) = \frac{n}{2}(\sum_{d|n}(d \phi(d))+1) \) \\
+- \( \phi(1) = 1 \) and \( \phi(2) = 1 \) which two are only odd \( \phi \) \\
+- \( \phi(3) = 2 \) and \( \phi(4) = 2 \) and \( \phi(6) = 2 \) which three are only prime \( \phi \) \\
+- Find minimum n such that $ \frac{\phi(n)} {n} $ is  maximum- Multiple of small primes- $ 2 * 3 * 5 * 7 * 11 * 13 * ... $ \\
+
+\textbf{Mobius}
+
+\[ \sum_{i = 1}^n \sum_{j = 1}^n [gcd(i, j) = 1] = \sum_{k = 1}^n \mu(k) \lfloor \frac{n}{k} \rfloor^2 \]
+
+\[ \sum_{i = 1}^n \sum_{j = 1}^n gcd(i, j) = \sum_{k = 1}^n k \sum_{l = 1}^{\lfloor \frac{n}{k} \rfloor} \mu(l) \lfloor {\frac{n}{kl}} \rfloor^2 \]
+
+\[ \sum_{i = 1}^n \sum_{j = 1}^n gcd(i, j) = \sum_{k = 1}^n (\frac{\lfloor \frac{n}{k} \rfloor) (1 + \lfloor \frac{n}{k} \rfloor) }{2})^2 \sum_{d | k} \mu (d) kd \]
+
+\textbf{Tree Hashing}
+
+$f(u) = sz[u] * \sum_{i = 0} f(v) * p^{i}$ ;$ f(v) $ are sorted 
+\( f(child) = 1 \)
+
+\textbf{Permutation} \\
+- To maximize the sum of adjacent differences of a permuation, it is necessary and sufficient to place the smallest half numbers in odd position and the greatest half numbers in even position. Or, vice versa.
+
+\textbf{String} \\
+- If the sum of length of some strings is \( N \), there can be at most \( \sqrt{N} \) distinct length. \\
+- A Text can have at most \( O(N \times \sqrt{N}) \) distinct substrings that match with given patterns where the sum of the length of the given patterns is \( N \). \\
+- Period =  n \% (n - pi.back() == 0)? n - pi.back(): n \\
+- The first \( (period) \) cyclic rotations of a string are distinct. Further cyclic rotations repeat the previous strings. \\
+- \( S \) is a palindrome if and only if it's period is a palindrome. \\
+
+\textbf{Bit} \\
+- `(a xor b)` and `(a + b)` has the same parity \\
+- `(a + b)` = `(a xor b)` + 2 (a \& b) \\
+- $gcd(a, b) \leq a - b \leq xor(a, b)$ \\
+
+\textbf{Convolution} \\
+- Hamming Distance: Replace \( 0 \) with \( -1 \)
+- SQRT Decomposition: Find block size, B = sqrt(8 * n)

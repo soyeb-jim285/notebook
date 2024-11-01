@@ -1,3 +1,8 @@
+/**
+ * Author: Farhan
+* Description: Suffix Automaton
+* Time: O(N)
+*/
 char s[N], p[N];
 map <char, int> to[N << 1];
 int len[N << 1], link[N << 1], sz, last;

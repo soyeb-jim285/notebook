@@ -33,13 +33,31 @@
 			$p(n)$ & 1 & 1 & 2 & 3 & 5 & 7 & 11 & 15 & 22 & 30 & 627 & $\mathtt{\sim}$2e5 & $\mathtt{\sim}$2e8 \\
 		\end{tabular}
 		\end{center}
-
+  \kactlimport{Partition.h}
 	\subsection{Lucas' Theorem}
 		Let $n,m$ be non-negative integers and $p$ a prime. Write $n=n_kp^k+...+n_1p+n_0$ and $m=m_kp^k+...+m_1p+m_0$. Then $\binom{n}{m} \equiv \prod_{i=0}^k\binom{n_i}{m_i} \pmod{p}$.
+
+    - \( \binom{m}{n} \) is divisible by p if and only if at least one of the base-\(p\) digits of \( n \) is greater than the corresponding base-\( p \) digit of \( m \).
+    
+    - The number of entries in the \( n \)th row of Pascal's triangle that are not divisible by \( p  = \prod_{i = 0}^k (n_i + 1) \)
+    
+    - All entries in the \( (p^{k} - 1)th \) row are not divisble by \( p \).
+    
+    - \( \binom{n}{m} \equiv \lfloor \frac{n}{p} \rfloor (\mod p) \)
 
 	\subsection{Binomials}
 		\kactlimport{multinomial.h}
 
+  \subsection{2nd Kaplansky's Lemma}
+
+  The number of ways of selecting \( k \) objects, no two consecutive,from \( n \) labelled objects arrayed in a circle is $ \frac{n}{k} \binom{n-k-1}{k-1} = \frac{n}{n - k} \binom{n-k}{k} $
+  \subsection{Distinct Objects into Distinct Bins}
+
+  - $ n $ distinct objects into $ r $ distinct bins $ = r^n $
+
+  - Among $ n $ distinct objects, exactly $ k $ of them into r distincts bins $ = \binom{n}{k}r^k $
+
+  - $ n $ distinct objects into $ r $ distinct bins such that each bin contains at least one object $ = \sum_{i = 0}^{r} (-1)^i \binom{r}{i} (r - i)^n $
 \section{General purpose numbers}
 	\subsection{Bernoulli numbers}
 		EGF of Bernoulli numbers is $B(t)=\frac{t}{e^t-1}$ (FFT-able).
@@ -76,7 +94,7 @@
 		$$S(n,k) = S(n-1,k-1) + k S(n-1,k)$$
 		$$S(n,1) = S(n,n) = 1$$
 		$$S(n,k) = \frac{1}{k!}\sum_{j=0}^k (-1)^{k-j}\binom{k}{j}j^n$$
-
+  \kactlimport{Stirling2nd.h}
 	\subsection{Bell numbers}
 		Total number of partitions of $n$ distinct elements. $B(n) =$
 		$1, 1, 2, 5, 15, 52, 203, 877, 4140, 21147, \dots$. For $p$ prime,
