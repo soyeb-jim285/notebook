@@ -18,7 +18,8 @@ struct Trie {
     cur->sz++;
     for (int i = B - 1; i >= 0; i--) {
       int b = val >> i & 1;
-      if (cur->nxt[b] == NULL) cur->nxt[b] = new node();
+      if (cur->nxt[b] == NULL)
+        cur->nxt[b] = new node();
       cur = cur->nxt[b];
       cur->sz++;
     }
@@ -28,13 +29,15 @@ struct Trie {
     node *cur = root;
     int ans = 0;
     for (int i = B - 1; i >= 0; i--) {
-      if (cur == NULL) break;
+      if (cur == NULL)
+        break;
       int b1 = x >> i & 1, b2 = k >> i & 1;
       if (b2 == 1) {
         if (cur->nxt[b1])
           ans += cur->nxt[b1]->sz;
         cur = cur->nxt[!b1];
-      } else cur = cur->nxt[b1];
+      } else
+        cur = cur->nxt[b1];
     }
     return ans;
   }
@@ -64,15 +67,16 @@ struct Trie {
   }
   void del(node *cur) {
     for (int i = 0; i < 2; i++)
-      if (cur->nxt[i]) del(cur->nxt[i]);
+      if (cur->nxt[i])
+        del(cur->nxt[i]);
     delete (cur);
   }
 };
-//Next Combination Mask 
+// Next Combination Mask
 int next_combs_mask(int mask) {
   int lsb = -mask & mask;
   return (((mask + lsb) ^ mask) / (lsb << 2)) | (mask + lsb);
 }
-//Iterate over submask in decreasing order 
-for (int s = mask; s > 0;
-                                                s = (s - 1) & mask) {}
+// Iterate over submask in decreasing order
+for (int s = mask; s > 0; s = (s - 1) & mask) {
+}
