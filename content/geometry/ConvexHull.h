@@ -21,20 +21,34 @@ Points on the edge of the hull between two other points are not considered part 
 #include "Point.h"
 
 typedef Point<ll> P;
-vector<P> convexHull(vector<P> pts, bool strict = true) {
+vector<P> convexHull(vector<P> pts, bool allow_collinear = false) {
   if (sz(pts) <= 1)
     return pts;
   sort(all(pts));
-  vector<P> h(sz(pts) + 1);
-  int s = 0, t = 0;
-  for (int it = 2; it--; s = --t, reverse(all(pts))) {
-    for (P p : pts) {
-      while (t >= s + 2 && (strict ? h[t - 2].cross(h[t - 1], p) < 0
-                                   : h[t - 2].cross(h[t - 1], p) <= 0)) {
-        t--;
-      }
-      h[t++] = p;
-    }
+  pts.erase(unique(all(pts), [&](const P &a, const P &b) { return a == b; }),
+            pts.end());
+  vector<P> hull;
+  auto condition = [&](const P &a, const P &b, const P &c) -> bool {
+    ll cross = a.cross(b, c);
+    if (allow_collinear)
+      return cross < 0;
+    else
+      return cross <= 0;
+  };
+  for (const P &p : pts) {
+    while (sz(hull) >= 2 &&
+           condition(hull[sz(hull) - 2], hull[sz(hull) - 1], p))
+      hull.pop_back();
+    hull.push_back(p);
   }
-  return {h.begin(), h.begin() + t - (t == 2 && h[0] == h[1])};
+  int lower_size = sz(hull) + 1;
+  for (int i = sz(pts) - 1; i >= 0; --i) {
+    const P &p = pts[i];
+    while (sz(hull) >= lower_size &&
+           condition(hull[sz(hull) - 2], hull[sz(hull) - 1], p))
+      hull.pop_back();
+    hull.push_back(p);
+  }
+  hull.pop_back();
+  return hull;
 }

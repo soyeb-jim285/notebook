@@ -2,36 +2,63 @@
  * Author: Farhan
  * Description: Segment tree with lazy propagation
  * Time: O(\log N)
- * Usage: update(1, 0, n - 1, ql, qr, val), query(1, 0, n - 1, ql, qr)
+ * Usage: st.query(1, 1, n, l, r), st.upd(1, 1, n, l, r, val);
  * Status: stress-tested
  */
-void push(int ind, int l, int r) {
-  if (lazy[ind] != 0) {
-    tree[ind] += (r - l + 1) * lazy[ind];
-    if (l != r)
-      lazy[2 * ind] += lazy[ind], lazy[2 * ind + 1] += lazy[ind];
-    lazy[ind] = 0;
+const int N = 1e5 + 9;
+int a[N];
+struct segment_tree {
+#define lc (n << 1)
+#define rc ((n << 1) | 1)
+  long long t[4 * N], lazy[4 * N];
+  segment_tree() {
+    memset(t, 0, sizeof t);
+    memset(lazy, 0, sizeof lazy);
   }
-}
-void update(int ind, int l, int r, int ql, int qr, int val) {
-  push(ind, l, r);
-  if (l > r || l > qr || r < ql)
-    return;
-  if (l >= ql && r <= qr) {
-    lazy[ind] += val;
-    push(ind, l, r);
-    return;
+  inline void push(int n, int b, int e) {
+    if (lazy[n] == 0)
+      return;
+    t[n] = t[n] + lazy[n] * (e - b + 1);
+    if (b != e) {
+      lazy[lc] = lazy[lc] + lazy[n];
+      lazy[rc] = lazy[rc] + lazy[n];
+    }
+    lazy[n] = 0;
   }
-  int mid = (l + r) / 2;
-  update(2 * ind, l, mid, ql, qr, val);
-  update(2 * ind + 1, mid + 1, r, ql, qr, val);
-  tree[ind] = tree[2 * ind] + tree[2 * ind + 1];
-}
-int query(int ind, int l, int r, int ql, int qr) {
-  push(ind, l, r);
-  if (l > qr || r < ql) return 0;
-  if (l >= ql && r <= qr) return tree[ind];
-  int mid = (l + r) / 2;
-  return query(2 * ind, l, mid, ql, qr) +
-         query(2 * ind + 1, mid + 1, r, ql, qr);
-}
+  inline long long combine(long long a, long long b) { return a + b; }
+  inline void pull(int n) { t[n] = t[lc] + t[rc]; }
+  void build(int n, int b, int e) {
+    lazy[n] = 0;
+    if (b == e) {
+      t[n] = a[b];
+      return;
+    }
+    int mid = (b + e) >> 1;
+    build(lc, b, mid);
+    build(rc, mid + 1, e);
+    pull(n);
+  }
+  void upd(int n, int b, int e, int i, int j, long long v) {
+    push(n, b, e);
+    if (j < b || e < i)
+      return;
+    if (i <= b && e <= j) {
+      lazy[n] = v; // set lazy
+      push(n, b, e);
+      return;
+    }
+    int mid = (b + e) >> 1;
+    upd(lc, b, mid, i, j, v);
+    upd(rc, mid + 1, e, i, j, v);
+    pull(n);
+  }
+  long long query(int n, int b, int e, int i, int j) {
+    push(n, b, e);
+    if (i > e || b > j)
+      return 0; // return null
+    if (i <= b && e <= j)
+      return t[n];
+    int mid = (b + e) >> 1;
+    return combine(query(lc, b, mid, i, j), query(rc, mid + 1, e, i, j));
+  }
+};

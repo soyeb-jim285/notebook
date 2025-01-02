@@ -6,7 +6,7 @@
 	% \kactlimport{ModPow.h}
 	\kactlimport{ModLog.h}
 	% \kactlimport{ModSum.h}
-	% \kactlimport{ModMulLL.h}
+	\kactlimport{ModMulLL.h}
 	\kactlimport{ModSqrt.h}
 
 \section{Primality}
@@ -97,7 +97,7 @@ In particular, for the case where $n$ is a prime, the powers of primitive root r
   $ \sum_{d | n} \mu(d) = [ n = 1] $ (very useful)
 
   $ g(n) = \sum_{n|d} f(d) \Leftrightarrow f(n) = \sum_{n|d} \mu(d/n)g(d)$
-
+  \kactlimport{Mobius.h}
 \subsection{GCD and LCM}
 if $m$ is any integer, then $\displaystyle \gcd(a + m {\cdot} b, b) = \gcd(a, b)$ \\
 The gcd is a multiplicative function in the following sense: if $\displaystyle a_1$ and $\displaystyle a_2$ are relatively prime, then $\displaystyle \gcd(a_1 \cdot a_2, b) = \gcd(a_1, b) \cdot \gcd(a_2,b )$. \\
